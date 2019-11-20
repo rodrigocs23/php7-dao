@@ -17,9 +17,21 @@ require_once("config.php");
 
 // Load user using user and password
 //echo json_encode(Client::login("raposo.am", "12345"));
-$client = new Client();
-$client->login("raposo", "12345");
+//$client = new Client();
+//$client->login("raposo", "12345");
+//
+//echo $client;
 
-echo $client;
+//Insert new client using DAO
+
+$client = new Client();
+
+$client->setNameCLient('Rodrigo');
+$client->setUserCLient('rcs123');
+$client->setPasswordCLient('kamehameha');
+
+$client->insert();
+
+
 
 ?>

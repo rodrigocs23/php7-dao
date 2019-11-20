@@ -48,12 +48,7 @@ class Client {
         $sql = new Sql();
         $result = $sql->select("SELECT * FROM client WHERE id = :ID", array(':ID' => $id));
         if (count($result) > 0) {
-            $row = $result[0];
-            $this->setIdClient($row['id']);
-            $this->setNameClient($row['name']);
-            $this->setUserClient($row['user']);
-            $this->setPasswordClient($row['password']);
-
+            $this->setData($result[0]);
         }
     }
     
@@ -72,14 +67,27 @@ class Client {
         $result = $sql->select("SELECT * FROM client WHERE user = :USER and password = :PASSWORD ", array(':USER'=>$user, ':PASSWORD'=>$password));
 
         if (count($result)>0) {
-            $row = $result[0];
-            $this->setIdClient($row['id']);
-            $this->setNameClient($row['name']);
-            $this->setUserClient($row['user']);
-            $this->setPasswordClient($row['password']);
+            $this->setData($result[0]);
         } else {
             throw new Exception ("Access Denied, please check your credentials");
         }
+    }
+    
+    public function insert(){
+        $sql = new Sql();
+        
+        $sql->select("INSERT INTO client (name, password, user) VALUES (:NAME, :USER, :PASSWORD)", array(
+            ":NAME"=>$this->name,
+            ":USER"=>$this->user,
+            ":PASSWORD"=>$this->password,
+        ));
+    }
+    
+    public function setData($data){
+        $this->setIdClient($data['id']);
+        $this->setNameClient($data['name']);
+        $this->setUserClient($data['user']);
+        $this->setPasswordClient($data['password']);
     }
     public function __toString () {
         return json_encode(array(
