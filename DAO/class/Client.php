@@ -93,12 +93,23 @@ class Client {
         $result = $sql->query("UPDATE client SET name=:NAME, password=:PASSWORD, user=:USER WHERE id=:ID", array(":NAME"=>$this->getNameClient(), ":PASSWORD"=>$this->getPasswordClient(), ":USER"=>$this->getUserClient(), ":ID"=>$this->getIdClient()));
     }
     
+    public function delete(){
+        $sql = new Sql();
+        $result = $sql->query("DELETE FROM client WHERE id = :ID", array(":ID"=>$this->getIdClient()));
+        
+        $this->setIdCLient(0);
+        $this->setPasswordCLient("");
+        $this->setUserCLient("");
+        $this->setNameCLient("");
+    }
+    
     public function setData($data){
         $this->setIdClient($data['id']);
         $this->setNameClient($data['name']);
         $this->setUserClient($data['user']);
         $this->setPasswordClient($data['password']);
     }
+    
     public function __toString () {
         return json_encode(array(
             'id'=>$this->getIdCLient(),

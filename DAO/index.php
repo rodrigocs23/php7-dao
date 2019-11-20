@@ -33,9 +33,18 @@ require_once("config.php");
 //$client->insert();
 
 // Update using DAO
+//$client = new Client();
+//$client->loadById(3);
+//$client->update("Super Man", "superzinho", "manaus2000");
+//
+//echo $client;
+
+//Delete using DAO
 $client = new Client();
+
 $client->loadById(3);
-$client->update("Super Man", "superzinho", "manaus2000");
+
+$client->delete();
 
 echo $client;
 ?>
