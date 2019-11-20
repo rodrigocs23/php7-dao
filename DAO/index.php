@@ -24,14 +24,18 @@ require_once("config.php");
 
 //Insert new client using DAO
 
+//$client = new Client();
+//
+//$client->setNameCLient('Rodrigo');
+//$client->setUserCLient('rcs123');
+//$client->setPasswordCLient('kamehameha');
+//
+//$client->insert();
+
+// Update using DAO
 $client = new Client();
+$client->loadById(3);
+$client->update("Super Man", "superzinho", "manaus2000");
 
-$client->setNameCLient('Rodrigo');
-$client->setUserCLient('rcs123');
-$client->setPasswordCLient('kamehameha');
-
-$client->insert();
-
-
-
+echo $client;
 ?>

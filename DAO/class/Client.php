@@ -83,6 +83,16 @@ class Client {
         ));
     }
     
+    public function update($name, $user, $password){
+        $sql = new Sql();
+        
+        $this->setNameCLient($name);
+        $this->setPasswordCLient($password);
+        $this->setUserCLient($user);
+        
+        $result = $sql->query("UPDATE client SET name=:NAME, password=:PASSWORD, user=:USER WHERE id=:ID", array(":NAME"=>$this->getNameClient(), ":PASSWORD"=>$this->getPasswordClient(), ":USER"=>$this->getUserClient(), ":ID"=>$this->getIdClient()));
+    }
+    
     public function setData($data){
         $this->setIdClient($data['id']);
         $this->setNameClient($data['name']);
