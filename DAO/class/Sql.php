@@ -13,13 +13,13 @@ class Sql extends PDO {
         
         foreach ($parameters as $key => $value) {
             
-            $this->setParam($key, $value);
+            $this->setParam($stmt, $key, $value);
             
         }
     }
     
     private function setParam($stmt, $key, $value){
-        $stmt = bindParam($key, $value);
+        $stmt->bindParam($key, $value);
     }
     
     public function query($rawQuery, $params = array()){
